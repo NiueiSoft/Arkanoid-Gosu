@@ -69,6 +69,7 @@ class GameWindow < Gosu::Window
         end
     end
     collisio_barra(@barraJugador, @pilota)
+    collisio_tile(@pilota, @tiles)
     @pilota.update
     @foc.x = @barraJugador.x-60
     @foc.y = @barraJugador.y-70
@@ -95,6 +96,18 @@ def collisio_barra(pBarraJugador, pPilota)
   end
 end
 
+def collisio_tile(pPilota,tiles)
+  tiles.each do |tile|
+    if(pPilota.y < tile.y+10 && tile.x < pPilota.x && pPilota.x < tile.x + 60)
+      if @pilota.vy >0 
+        @pilota.vy = @pilota.vy  * -1 
+        @pilota.vy =  @pilota.vy * 1.1
+        @pilota.vx =  @pilota.vx * 1.1 
+        tiles.delete(tile)
+      end
+    end
+  end
+end 
 
 class Pilota
   attr_accessor :vx,:vy, :x,:y
