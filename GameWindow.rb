@@ -74,8 +74,6 @@ class GameWindow < Gosu::Window
     @foc.y = @barraJugador.y-70
 
   end
-
-  end
 end
  
 
