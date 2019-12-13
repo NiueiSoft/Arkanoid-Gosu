@@ -34,6 +34,9 @@ class GameWindow < Gosu::Window
     end
     collisio_barra(@barraJugador, @pilota)
     @pilota.update
+    @foc.x = @barraJugador.x-60
+    @foc.y = @barraJugador.y-70
+
   end
 
 end
@@ -127,12 +130,14 @@ class Foc
   attr_accessor :x,:y
 
   def initialize(window)
-    @image = Gosu::Image.load_tiles 'foc.bmp', 80 ,80
-    @anima = Animation.new(@image[0..12], 0.2)
+    @image = Gosu::Image.load_tiles 'foc.bmp', 240 ,80
+    @anima = Animation.new(@image[0..12], 0.1)
+    @x=0
+    @y=0
   end
   
   def draw()
-    @anima.start.draw(10,400,0)
+    @anima.start.draw(@x,@y,-1)
   end
 end
 
